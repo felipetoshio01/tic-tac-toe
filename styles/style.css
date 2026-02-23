@@ -1,5 +1,18 @@
 @charset "UTF-8";
 
+/* ================= KEYFRAMES ================= */
+@keyframes show-up {
+    from {
+        transform: scale(0.1);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+
+
 /* ================= GLOBAIS ================= */
 * {
     margin: 0;
@@ -15,7 +28,14 @@ body {
 }
 
 :root {
+    /* ================= PALETA ================= */
     --board-line-color: rgb(40, 40, 40);
+
+    --circle-color: #3E3EF4;
+    --circle-hover-color: #5f5ffe;
+
+    --cross-color: #E41C62;
+    --cross-hover-color: #fd5992;
 }
 
 
@@ -51,27 +71,55 @@ main {
     background-color: var(--board-line-color);
 }
 
+/* Cada célula do grid */
 .boardSpace {
     display: grid;
     place-items: center;
+    padding: 0.5em;
 
     background-color: white;
 }
 
-.circle {
+/* Todo SVG do cross e do circle */
+svg {
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s ease-in-out;
+}
+
+/* ======== CIRCLE ======== */
+.circleItem {
     display: none;
+    stroke: var(--circle-color);
 }
 
-.cross {
+/* Quando adicionar a classe markedCircle, mostre o círculo */
+.markedCircle .circleItem {
+    display: block;
+    animation: show-up 0.3s ease-in-out;  /* Animação de aparecer */
+} 
+
+.markedCircle .circleItem:hover {
+    stroke: var(--circle-hover-color);
+    transform: scale(1.2);
+}
+
+
+/* ======== CROSS ======== */
+.crossItem {
     display: none;
+    fill: var(--cross-color);
 }
 
-.markedCircle .circle {
+/* Quando adicionar a classe markedCircle, mostre o X */
+.markedCross .crossItem {
     display: block;
+    animation: show-up 0.3s ease-in-out;  /* Animação de aparecer */
 }
 
-.markedCross .cross {
-    display: block;
+.markedCross .crossItem:hover {
+    fill: var(--cross-hover-color);
+    transform: rotate(90deg);
 }
 
 
