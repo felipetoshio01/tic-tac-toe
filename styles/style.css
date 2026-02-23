@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+/* ================= GLOBAIS ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+
+    min-height: 100vh;
+}
+
+:root {
+    --board-line-color: rgb(40, 40, 40);
+}
+
+
+/* ================= HEADER ================= */
+header {
+    padding: 1em;
+}
+
+header h1 {
+    text-align: center;
+}
+
+
+
+/* ================= MAIN ================= */
+main {
+    display: grid;
+    place-items: center;
+    padding: clamp(1em, 5vw, 8em);
+}
+
+#gameBoard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 0.5em;
+
+    aspect-ratio: 1 / 1;
+    width: clamp(10em, 100%, 30em);
+    height: auto;
+
+    background-color: var(--board-line-color);
+}
+
+.boardSpace {
+    background-color: white;
+}
+
+
+/* ================= FOOTER ================= */
+footer {
+    padding: 1em;
+}
+
+footer p {
+    text-align: center;
+    margin: 0.25em 0;
+}
