@@ -37,11 +37,12 @@ main {
     padding: clamp(1em, 5vw, 8em);
 }
 
+/* ======== JOGO ======== */
 #gameBoard {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    gap: 0.5em;
+    gap: clamp(0.5em, 2%, 1.5em);
 
     aspect-ratio: 1 / 1;
     width: clamp(10em, 100%, 30em);
@@ -51,8 +52,28 @@ main {
 }
 
 .boardSpace {
+    display: grid;
+    place-items: center;
+
     background-color: white;
 }
+
+.circle {
+    display: none;
+}
+
+.cross {
+    display: none;
+}
+
+.markedCircle .circle {
+    display: block;
+}
+
+.markedCross .cross {
+    display: block;
+}
+
 
 
 /* ================= FOOTER ================= */
