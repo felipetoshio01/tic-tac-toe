@@ -78,6 +78,7 @@ main {
     padding: 0.5em;
 
     background-color: white;
+    border: none;
 }
 
 /* Todo SVG do cross e do circle */
