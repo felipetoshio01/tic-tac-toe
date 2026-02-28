@@ -14,6 +14,7 @@ const resetBtn = document.getElementById("resetBtn");
    ============================ */ 
 let currentTurn = "o";  
 
+GameMatrix.getWinner();
 
 // Adicione algo no click do boardSpace
 gameBoard.addEventListener("click", event => {
