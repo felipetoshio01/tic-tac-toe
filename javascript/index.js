@@ -9,10 +9,10 @@ const resetBtn = document.getElementById("resetBtn");
 // =========== VARIABLES ===========
 
 /* ============================
-        0 = vez do círculo
-        1 = vez do X
+        "o" = vez do círculo
+        "x" = vez do X
    ============================ */ 
-let currentTurn = 0;  
+let currentTurn = "o";  
 
 
 // Adicione algo no click do boardSpace
@@ -24,21 +24,21 @@ gameBoard.addEventListener("click", event => {
     markBoard(event.target);
 })
 
-
+// Marca o boardSpace com X ou O
 function markBoard(boardSpace) {
     
     // Verifica se já está marcada
     if (isMarked(boardSpace)) return;
 
     // Se for a vez do círculo
-    if (currentTurn === 0) {
+    if (currentTurn === "o") {
         boardSpace.classList.add("markedCircle");
-        currentTurn = 1;  // Muda a vez
+        currentTurn = "x";  // Muda a vez
     
     // Se for a vez do X
     } else {
         boardSpace.classList.add("markedCross");
-        currentTurn = 0;  // Muda a vez
+        currentTurn = "o";  // Muda a vez
     }
 }
 
