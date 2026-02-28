@@ -131,6 +131,50 @@ svg {
 }
 
 
+/* ======== MENSAGEM ======== */
+.winMessageWrapper {
+    position: fixed;
+
+    display: grid;
+    place-items: center;
+    grid-template-rows: 1fr auto;
+    
+    background-color: rgba(255, 255, 255, 0.95);
+
+    padding: 2em;
+    box-shadow: 4px 4px 8px 5px rgba(0, 0, 0, 0.125);
+    
+    border-radius: 2em;
+    border: 0.1em solid black;
+
+    aspect-ratio: 3/2;
+    width: clamp(250px, 80%, 500px);
+    height: auto;
+    
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    
+    transition: 0.5s ease-in-out;
+    transform: scale(0);
+}
+
+.activeMessage {
+    transform: scale(1);
+}
+
+#winMessage {
+    font-size: 1.5em;
+}
+
+#closeBtn {
+    padding: 0.5em;
+    border-radius: 1em;
+    border: 0.05em solid black;
+    font-size: 1em;
+}
+
+
 /* ================= FOOTER ================= */
 footer {
     padding: 1em;

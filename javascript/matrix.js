@@ -21,13 +21,13 @@ export default class GameMatrix {
     static getWinner() {
 
         if (this.#rowWinner() == "o" || this.#columnWinner() == "o" || this.#diagonalWinner() == "o") {
-            console.log("O ganhou");
+            return "o";
 
-        } else if (this.#rowWinner() == "x" || this.#columnWinner() == "x" || this.#diagonalWinner() == "o") {
-            console.log("X ganhou");
+        } else if (this.#rowWinner() == "x" || this.#columnWinner() == "x" || this.#diagonalWinner() == "x") {
+            return "x";
 
         } else {
-            console.log("Nada aconteceu");
+            return null;
 
         }   
     }   
@@ -76,7 +76,7 @@ export default class GameMatrix {
     // Determina se há ou quem é o ganhador em questão das diagonais
     static #diagonalWinner() {
         let diagonalSum1 = this.matrix[0][0] + this.matrix[1][1] + this.matrix[2][2];
-        let diagonalSum2 = this.matrix[0][3] + this.matrix[1][1] + this.matrix[2][0];
+        let diagonalSum2 = this.matrix[0][2] + this.matrix[1][1] + this.matrix[2][0];
 
         if (diagonalSum1 == 3 || diagonalSum2 == 3) {
             return "o";

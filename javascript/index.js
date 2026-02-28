@@ -5,6 +5,9 @@ import GameMatrix from "./matrix.js";
 const gameBoard = document.getElementById("gameBoard");
 const boardSpaces = document.querySelectorAll(".boardSpace");
 const resetBtn = document.getElementById("resetBtn");
+const winMessageWrapper = document.getElementById("winMessageWrapper");
+const winMessage = document.getElementById("winMessage");
+const closeBtn = document.getElementById("closeBtn");
 
 // =========== VARIABLES ===========
 
@@ -13,11 +16,14 @@ const resetBtn = document.getElementById("resetBtn");
         "x" = vez do X
    ============================ */ 
 let currentTurn = "o";  
+let isBoardBlocked = false;
 
 // Adicione algo no click do boardSpace
 gameBoard.addEventListener("click", event => {
 
     if (!event.target.matches(".boardSpace")) return;
+
+    if (isBoardBlocked) return;
 
     // Função de marcação na Matrix
     markMatrix(event.target);
@@ -26,7 +32,7 @@ gameBoard.addEventListener("click", event => {
     markBoard(event.target);
 
     // Verifica se alguém ganhou
-    GameMatrix.getWinner();
+    analyzeBoard();
     
 })
 
@@ -90,8 +96,6 @@ function markMatrix(boardSpace) {
             GameMatrix.matrix[2][2] = currentTurn == "o" ? 1 : 4;
             break;
     }
-
-    console.log(GameMatrix.matrix)
 }
 
 // Função que verifica se a boardSpace está vazia
@@ -100,12 +104,34 @@ function isMarked(boardSpace) {
     return (classArray.contains("markedCircle") || classArray.contains("markedCross")) ? true : false;
 }
 
+function analyzeBoard() {
+
+    if (GameMatrix.getWinner() == null) return;
+
+    if (GameMatrix.getWinner() == "o") {
+        winMessage.textContent = "Time azul ganhou!"
+        winMessageWrapper.classList.add("activeMessage");
+
+    } else  {
+        winMessage.textContent = "Time vermelho ganhou!"
+        winMessageWrapper.classList.add("activeMessage");
+
+    }
+
+    isBoardBlocked = true;  // Bloquei o click
+}
+
+closeBtn.addEventListener("click", () => {
+    winMessageWrapper.classList.remove("activeMessage");
+})
+
 // Função que reinicia o jogo
 resetBtn.addEventListener("click", () => {
 
     // Para cada boardSpace   
     boardSpaces.forEach( boardSpace => {
 
+        isBoardBlocked = false;  // Libera o click novamente
         GameMatrix.clearMatrix();  // Limpa a Matrix do jogo
         boardSpace.classList.remove("markedCircle", "markedCross");  // Remova ambas as classes
     })
