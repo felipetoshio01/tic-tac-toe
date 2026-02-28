@@ -7,9 +7,9 @@ export default class GameMatrix {
 
     // A instância da Matrix
     static matrix = [
-        [1, 1, 1],
-        [2, 2, 2],
-        [3, 3, 2]
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0]
     ];
 
     // Faz todos os valores voltarem a ser 0
@@ -20,10 +20,10 @@ export default class GameMatrix {
     // Determina se há ou quem é o ganhador no jogo
     static getWinner() {
 
-        if (this.#rowWinner() == "o" || this.#columnWinner() == "o") {
+        if (this.#rowWinner() == "o" || this.#columnWinner() == "o" || this.#diagonalWinner() == "o") {
             console.log("O ganhou")
 
-        } else if (this.#rowWinner() == "x" || this.#columnWinner() == "x") {
+        } else if (this.#rowWinner() == "x" || this.#columnWinner() == "x" || this.#diagonalWinner() == "o") {
             console.log("X ganhou")
 
         } else {
@@ -71,5 +71,22 @@ export default class GameMatrix {
         }
 
         return null;
+    }
+
+    // Determina se há ou quem é o ganhador em questão das diagonais
+    static #diagonalWinner() {
+        let diagonalSum1 = this.matrix[0][0] + this.matrix[1][1] + this.matrix[2][2];
+        let diagonalSum2 = this.matrix[0][3] + this.matrix[1][1] + this.matrix[2][0];
+
+        if (diagonalSum1 == 3 || diagonalSum2 == 3) {
+            return "o";
+
+        } else if ((diagonalSum1 == 12 || diagonalSum2 == 12)) {
+            return "x";
+
+        } else {
+            return null;
+
+        }
     }
 }
