@@ -21,13 +21,13 @@ export default class GameMatrix {
     static getWinner() {
 
         if (this.#rowWinner() == "o" || this.#columnWinner() == "o" || this.#diagonalWinner() == "o") {
-            console.log("O ganhou")
+            console.log("O ganhou");
 
         } else if (this.#rowWinner() == "x" || this.#columnWinner() == "x" || this.#diagonalWinner() == "o") {
-            console.log("X ganhou")
+            console.log("X ganhou");
 
         } else {
-            console.log("Nada aconteceu")
+            console.log("Nada aconteceu");
 
         }   
     }   
@@ -59,8 +59,8 @@ export default class GameMatrix {
 
         for (let c = 0; c < 3; c++) {
 
-            let sum = this.matrix[c][0] + this.matrix[c][1] + this.matrix[c][2];
-            
+            let sum = this.matrix[0][c] + this.matrix[1][c] + this.matrix[2][c];
+
             if (sum == 3) {
                 return "o";
 

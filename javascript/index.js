@@ -19,8 +19,15 @@ gameBoard.addEventListener("click", event => {
 
     if (!event.target.matches(".boardSpace")) return;
 
-    // Função de marcação
+    // Função de marcação na Matrix
+    markMatrix(event.target);
+
+    // Função de marcação visual
     markBoard(event.target);
+
+    // Verifica se alguém ganhou
+    GameMatrix.getWinner();
+    
 })
 
 // Marca o boardSpace com X ou O
@@ -39,6 +46,52 @@ function markBoard(boardSpace) {
         boardSpace.classList.add("markedCross");
         currentTurn = "o";  // Muda a vez
     }
+}
+
+// Marca na Matrix
+function markMatrix(boardSpace) {
+    let spaceCoords = boardSpace.value;
+
+    switch (spaceCoords) {
+
+        case "00":
+            GameMatrix.matrix[0][0] = currentTurn == "o" ? 1 : 4;
+            break;
+        
+        case "01":
+            GameMatrix.matrix[0][1] = currentTurn == "o" ? 1 : 4;
+            break;
+        
+        case "02":
+            GameMatrix.matrix[0][2] = currentTurn == "o" ? 1 : 4;
+            break;
+        
+        case "10":
+            GameMatrix.matrix[1][0] = currentTurn == "o" ? 1 : 4;
+            break;
+        
+        case "11":
+            GameMatrix.matrix[1][1] = currentTurn == "o" ? 1 : 4;
+            break;
+        
+        case "12":
+            GameMatrix.matrix[1][2] = currentTurn == "o" ? 1 : 4;
+            break;
+
+        case "20":
+            GameMatrix.matrix[2][0] = currentTurn == "o" ? 1 : 4;
+            break;
+
+        case "21":
+            GameMatrix.matrix[2][1] = currentTurn == "o" ? 1 : 4;
+            break;
+
+        case "22":
+            GameMatrix.matrix[2][2] = currentTurn == "o" ? 1 : 4;
+            break;
+    }
+
+    console.log(GameMatrix.matrix)
 }
 
 // Função que verifica se a boardSpace está vazia
