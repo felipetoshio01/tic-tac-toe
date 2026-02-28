@@ -1,7 +1,12 @@
+// =========== IMPORTS ===========
+import GameMatrix from "./matrix.js";
+
 // =========== ELEMENTS ===========
 const gameBoard = document.getElementById("gameBoard");
 const boardSpaces = document.querySelectorAll(".boardSpace");
 const resetBtn = document.getElementById("resetBtn");
+
+// =========== VARIABLES ===========
 
 /* ============================
         0 = vez do círculo
@@ -49,6 +54,7 @@ resetBtn.addEventListener("click", () => {
     // Para cada boardSpace   
     boardSpaces.forEach( boardSpace => {
 
+        GameMatrix.clearMatrix();  // Limpa a Matrix do jogo
         boardSpace.classList.remove("markedCircle", "markedCross");  // Remova ambas as classes
     })
 }) 
