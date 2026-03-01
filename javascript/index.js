@@ -1,21 +1,29 @@
 // =========== IMPORTS ===========
 import GameMatrix from "./matrix.js";
 
-// =========== ELEMENTS ===========
-const gameBoard = document.getElementById("gameBoard");
-const boardSpaces = document.querySelectorAll(".boardSpace");
-const resetBtn = document.getElementById("resetBtn");
-const winMessageWrapper = document.getElementById("winMessageWrapper");
-const winMessage = document.getElementById("winMessage");
-const closeBtn = document.getElementById("closeBtn");
 
-// =========== VARIABLES ===========
+// =========== ELEMENTOS ===========
+
+// Jogo em si
+const gameBoard = document.getElementById("gameBoard");  // Tabuleiro todo
+const boardSpaces = document.querySelectorAll(".boardSpace");  // Cada espaço individual
+
+// Botão reset
+const resetBtn = document.getElementById("resetBtn");
+
+// Mensagem de vitória
+const winMessageWrapper = document.getElementById("winMessageWrapper");  // Container da mensagem
+const winMessage = document.getElementById("winMessage");  // Texto da mensagem
+const closeBtn = document.getElementById("closeBtn");  // Botão de fechar a mensagem
+
+
+// =========== VARIÁVEIS ===========
 
 /* ============================
         "o" = vez do círculo
         "x" = vez do X
    ============================ */ 
-let currentTurn = "o";  
+let currentTurn = "x";  
 let isBoardBlocked = false;
 
 // Adicione algo no click do boardSpace
@@ -33,7 +41,6 @@ gameBoard.addEventListener("click", event => {
 
     // Verifica se alguém ganhou
     analyzeBoard();
-    
 })
 
 // Marca o boardSpace com X ou O
@@ -57,6 +64,8 @@ function markBoard(boardSpace) {
 // Marca na Matrix
 function markMatrix(boardSpace) {
     let spaceCoords = boardSpace.value;
+
+    if (isMarked(boardSpace)) return;
 
     switch (spaceCoords) {
 
@@ -104,16 +113,25 @@ function isMarked(boardSpace) {
     return (classArray.contains("markedCircle") || classArray.contains("markedCross")) ? true : false;
 }
 
+// Função que analisa o jogo e define se houve velha ou vitória
 function analyzeBoard() {
 
-    if (GameMatrix.getWinner() == null) return;
+    // Retorna somente se não há vencedor e o jogo não acabou (não está cheio)
+    if (GameMatrix.getWinner() == null && !GameMatrix.isFull()) return;
 
+    // Caso o AZUL ganhe (O)
     if (GameMatrix.getWinner() == "o") {
-        winMessage.textContent = "Time azul ganhou!"
+        winMessage.textContent = "Azul ganhou!"
         winMessageWrapper.classList.add("activeMessage");
-
-    } else  {
-        winMessage.textContent = "Time vermelho ganhou!"
+    
+    // Caso o VERMELHO ganhe (X)
+    } else if (GameMatrix.getWinner() == "x") {
+        winMessage.textContent = "Vermelho ganhou!"
+        winMessageWrapper.classList.add("activeMessage");
+    
+    // Se ninguém ganhou e está cheio, deu velha
+    } else {
+        winMessage.textContent = "Deu velha! Que pena.";
         winMessageWrapper.classList.add("activeMessage");
 
     }
@@ -121,6 +139,7 @@ function analyzeBoard() {
     isBoardBlocked = true;  // Bloquei o click
 }
 
+// Função para fechar a mensagem
 closeBtn.addEventListener("click", () => {
     winMessageWrapper.classList.remove("activeMessage");
 })
@@ -128,11 +147,13 @@ closeBtn.addEventListener("click", () => {
 // Função que reinicia o jogo
 resetBtn.addEventListener("click", () => {
 
+    // Reajustes de variáveis
+    isBoardBlocked = false;  // Libera o click novamente
+    currentTurn = "x"  // Dá o turno para a bolinha novamente
+    GameMatrix.clearMatrix();  // Limpa a Matrix do jogo
+
     // Para cada boardSpace   
     boardSpaces.forEach( boardSpace => {
-
-        isBoardBlocked = false;  // Libera o click novamente
-        GameMatrix.clearMatrix();  // Limpa a Matrix do jogo
         boardSpace.classList.remove("markedCircle", "markedCross");  // Remova ambas as classes
     })
 }) 

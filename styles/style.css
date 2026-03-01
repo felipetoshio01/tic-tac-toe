@@ -3,7 +3,7 @@
 /* ================= KEYFRAMES ================= */
 @keyframes show-up {
     from {
-        transform: scale(0.1);
+        transform: scale(0);
     }
 
     to {
@@ -65,7 +65,7 @@ main {
     gap: clamp(0.5em, 2%, 1.5em);
 
     aspect-ratio: 1 / 1;
-    width: clamp(10em, 100%, 30em);
+    width: clamp(10em, 100%, 25em);
     height: auto;
 
     background-color: var(--board-line-color);
@@ -79,6 +79,14 @@ main {
 
     background-color: white;
     border: none;
+
+    cursor: pointer;
+
+    transition: 0.2s ease-in-out;
+}
+
+.boardSpace:hover {
+    background-color: rgb(246, 246, 246);
 }
 
 /* Todo SVG do cross e do circle */
@@ -163,15 +171,19 @@ svg {
     transform: scale(1);
 }
 
+/* Texto da mensagem */
 #winMessage {
     font-size: 1.5em;
 }
 
+/* Botão de fechar da mensagem */
 #closeBtn {
     padding: 0.5em;
     border-radius: 1em;
     border: 0.05em solid black;
     font-size: 1em;
+
+    cursor: pointer;
 }
 
 

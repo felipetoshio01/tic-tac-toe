@@ -1,9 +1,14 @@
 export default class GameMatrix {
 
-    /* Considere:
+    /* ===========================
+       Considere:
         - 1 = O
         - 4 = X
-    */
+
+       Logo:
+        - Soma 3 = "O" ganhou
+        - Soma 4 = "X" ganhou
+    =========================== */ 
 
     // A instância da Matrix
     static matrix = [
@@ -20,17 +25,34 @@ export default class GameMatrix {
     // Determina se há ou quem é o ganhador no jogo
     static getWinner() {
 
+        // Se "O" ganhou em um dos casos
         if (this.#rowWinner() == "o" || this.#columnWinner() == "o" || this.#diagonalWinner() == "o") {
             return "o";
-
+        
+        // Se "X" ganhou em um dos casos
         } else if (this.#rowWinner() == "x" || this.#columnWinner() == "x" || this.#diagonalWinner() == "x") {
             return "x";
-
+        
+        // Se não foi identificado vencedor
         } else {
             return null;
 
         }   
     }   
+
+    // Retorna se a Matrix está totalmente preenchida
+    static isFull() {
+
+        for (let row of this.matrix) {
+
+            for (let value of row) {
+
+                if (value === 0) return false;
+            }
+        }
+
+        return true;
+    }
 
     // Soma todos os valores de uma Row da Matrix
     static #rowSum(row) {
@@ -49,7 +71,7 @@ export default class GameMatrix {
                 return "x";
 
             } 
-        };
+        }
 
         return null;
     }
