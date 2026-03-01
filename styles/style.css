@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
 /* ================= KEYFRAMES ================= */
 @keyframes show-up {
     from {
@@ -24,18 +26,35 @@ body {
     display: grid;
     grid-template-rows: auto 1fr auto;
 
+    background-color: var(--bg-color);
+    font-family: var(--comic-font);
+
     min-height: 100vh;
 }
 
 :root {
     /* ================= PALETA ================= */
     --board-line-color: rgb(40, 40, 40);
+    --bg-color: #ccecff;
+    --hover-color: #edf8fe;
 
-    --circle-color: #3E3EF4;
-    --circle-hover-color: #5f5ffe;
+    --light-primary-color: #97d9ff;
+    --primary-color: #2AADFA;
+    --primary-dark-color: #416478;
 
-    --cross-color: #E41C62;
-    --cross-hover-color: #fd5992;
+    --light-secondary-color: #f06f74;
+    --secondary-color: #FA0A12;
+    --secondary-dark-color: #7B4143;
+
+    --circle-color: var(--primary-color);
+    --circle-hover-color: var(--primary-dark-color);
+
+    --cross-color: var(--secondary-color);
+    --cross-hover-color: var(--secondary-dark-color);
+
+    /* ================= FONTES ================= */
+    --comic-font: 'Comic Neue', cursive;
+    --text-font: 'Open Sans', Arial, Helvetica, sans-serif;
 }
 
 
@@ -45,7 +64,9 @@ header {
 }
 
 header h1 {
+    font: normal bold 2.2em var(--comic-font);
     text-align: center;
+    text-decoration: underline;
 }
 
 
@@ -54,7 +75,7 @@ header h1 {
 main {
     display: grid;
     place-items: center;
-    padding: clamp(1em, 5vw, 8em);
+    padding: 2em clamp(1em, 5vw, 8em);
 }
 
 /* ======== JOGO ======== */
@@ -65,7 +86,7 @@ main {
     gap: clamp(0.5em, 2%, 1.5em);
 
     aspect-ratio: 1 / 1;
-    width: clamp(10em, 100%, 25em);
+    width: clamp(10em, 100%, 24em);
     height: auto;
 
     background-color: var(--board-line-color);
@@ -75,10 +96,13 @@ main {
 .boardSpace {
     display: grid;
     place-items: center;
-    padding: 0.5em;
 
-    background-color: white;
+
+    background-color: var(--bg-color);
     border: none;
+
+    width: calc(100% + 1px);
+    height: calc(100% + 1px);
 
     cursor: pointer;
 
@@ -86,13 +110,13 @@ main {
 }
 
 .boardSpace:hover {
-    background-color: rgb(246, 246, 246);
+    background-color: var(--hover-color);
 }
 
 /* Todo SVG do cross e do circle */
 svg {
-    width: 100%;
-    height: 100%;
+    width: 99%;
+    height: 99%;
     transition: all 0.5s ease-in-out;
 }
 
@@ -134,10 +158,27 @@ svg {
 
 /* ======== BOTÃO RESET ======== */
 #resetBtn {
-    margin-top: 2em;
-    padding: 0.5em;
+    margin-top: 2.5em;
+    padding: 0.75em;
+
+    color: white;
+    font: normal bold 1em var(--comic-font);
+
+    background-color: var(--light-secondary-color);
+
+    border-radius: 2em;
+    border: none;
+
+    transition: background-color 0.1s ease-in-out;
 }
 
+#resetBtn:hover {
+    background-color: var(--secondary-dark-color);
+}
+
+#resetBtn:active {
+    background-color: var(--primary-dark-color);
+}
 
 /* ======== MENSAGEM ======== */
 .winMessageWrapper {
