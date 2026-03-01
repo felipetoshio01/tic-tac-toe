@@ -121,17 +121,20 @@ function analyzeBoard() {
 
     // Caso o AZUL ganhe (O)
     if (GameMatrix.getWinner() == "o") {
-        winMessage.textContent = "Azul ganhou!"
+        winMessage.textContent = "Azul ganhou!";
+        winMessage.style.color = "var(--primary-color)";
         winMessageWrapper.classList.add("activeMessage");
     
     // Caso o VERMELHO ganhe (X)
     } else if (GameMatrix.getWinner() == "x") {
-        winMessage.textContent = "Vermelho ganhou!"
+        winMessage.textContent = "Vermelho ganhou!";
+        winMessage.style.color = "var(--secondary-color)";
         winMessageWrapper.classList.add("activeMessage");
     
     // Se ninguém ganhou e está cheio, deu velha
     } else {
         winMessage.textContent = "Deu velha! Que pena.";
+        winMessage.style.color = "black";
         winMessageWrapper.classList.add("activeMessage");
 
     }
