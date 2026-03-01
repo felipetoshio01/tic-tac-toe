@@ -36,6 +36,7 @@ body {
     /* ================= PALETA ================= */
     --board-line-color: rgb(40, 40, 40);
     --bg-color: #ccecff;
+    --transparent-bg-color: rgba(255, 255, 255, 0.95);
     --hover-color: #edf8fe;
 
     --light-primary-color: #97d9ff;
@@ -188,13 +189,14 @@ svg {
     place-items: center;
     grid-template-rows: 1fr auto;
     
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: var(--transparent-bg-color);
+    backdrop-filter: blur(0.2em);
 
     padding: 2em;
     box-shadow: 4px 4px 8px 5px rgba(0, 0, 0, 0.125);
     
-    border-radius: 2em;
-    border: 0.1em solid black;
+    border-radius: 3em;
+    border: 0.1em solid var(--primary-dark-color);
 
     aspect-ratio: 3/2;
     width: clamp(250px, 80%, 500px);
@@ -212,21 +214,38 @@ svg {
     transform: scale(1);
 }
 
+
 /* Texto da mensagem */
 #winMessage {
     font-size: 1.5em;
+    font-weight: bold;
 }
 
 /* Botão de fechar da mensagem */
 #closeBtn {
-    padding: 0.5em;
-    border-radius: 1em;
-    border: 0.05em solid black;
-    font-size: 1em;
+    padding: 0.75em;
+
+    color: white;
+    font: normal bold 1em var(--comic-font);
+    text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
+
+    background-color: var(--light-primary-color);
+
+    border-radius: 2em;
+    border: none;
+
+    transition: background-color 0.1s ease-in-out;
 
     cursor: pointer;
 }
 
+#closeBtn:hover {
+    background-color: var(--primary-dark-color);
+}
+
+#closeBtn:active {
+    background-color: var(--secondary-dark-color);
+}
 
 /* ================= FOOTER ================= */
 footer {
