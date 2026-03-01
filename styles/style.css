@@ -22,16 +22,6 @@
     box-sizing: border-box;
 }
 
-body {
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-
-    background-color: var(--bg-color);
-    font-family: var(--comic-font);
-
-    min-height: 100vh;
-}
-
 :root {
     /* ================= PALETA ================= */
     --board-line-color: rgb(40, 40, 40);
@@ -57,6 +47,17 @@ body {
     --comic-font: 'Comic Neue', cursive;
     --text-font: 'Open Sans', Arial, Helvetica, sans-serif;
 }
+
+body {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+
+    background-color: var(--bg-color);
+    font-family: var(--comic-font);
+
+    min-height: 100vh;
+}
+
 
 
 /* ================= HEADER ================= */
